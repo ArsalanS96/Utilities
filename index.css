@@ -1,0 +1,133 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(digital.ttf);
+}
+
+.header{
+    height:140px;
+    border-bottom: 1px solid black;
+    background-repeat: repeat-x;
+    background-image: url("img/head.jpg");
+    background-size: 200px 140px;
+    color:white;
+    font-family: myFirstFont;
+}
+
+#calculator{
+    background-color: grey;
+    width:240px;
+    height: 400px;
+    border-radius:5px;
+    margin-left:20px;
+}
+#result{
+    border:2px solid black;
+    background-color:white;
+    height:75px;
+    width:175px;
+    position:relative;
+    left:30px;
+    top:30px;
+}
+.calcBut{
+    background-color:lightgray;
+    width:40px;
+    height:40px;
+    float:left;
+    margin-left:13px;
+    margin-top:15px;
+    font-size:38px;
+}
+.butRow{
+        position:relative;
+    top:50px;
+}
+#resText{
+    font-size:26px;
+}
+
+
+#stopwatch{
+    width:500px;
+    height:240px;
+    border:3px solid grey;
+    border-radius: 10px;
+    float:right;
+    position:relative;
+    bottom:470px;
+    right:100px;
+}
+
+.stopwatchDiv{
+
+}
+
+
+
+
+#time{
+    font-family: myFirstFont;
+    font-size:40px;
+    color:white;
+    float:right;
+    bottom:35px;
+    position:relative;
+}
+
+#utilities{
+    top:30px;
+    position:relative;
+}
+
+
+
+#clockDisplay{
+    position: relative;
+    background-color:lightgray;
+    border:1px solid black;
+    left:140px;
+    width:200px;
+    border-radius:10px;
+    font-size:60px;
+}
+#clockDisplay p{
+    position: relative;
+    left:80px;
+    bottom:10px;
+}
+
+#startTime{
+    background-color:green;
+    margin-right:16px;
+}
+
+#clearTime{
+    background-color:blue;
+}
+.button{
+    position:relative;
+    left:120px;
+    font-size:40px;
+    margin-top:20px;
+    width:120px;
+    height:70px;
+    display:inline-block;
+    border-radius:10px;
+}
+
+.button center{
+    position:relative;
+    top:5px;
+    color:white;
+}
+
+#stopName{
+    position: relative;
+    left:850px;
+    bottom:490px;
+}
+
+#calcDiv{
+    position:relative;
+    left:50px;
+}

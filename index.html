@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <h1 id="utilities">Utilities</h1>
+        <div id="clock"> <!---display current time---->
+            <p id="time"></p>
+        </div>
+    </div>
+
+</div>
+
+<div class="body">
+
+    <div id="calcDiv">
+    <h1>One digit calculator</h1>
+    <p>Performs basic arithmetic operations with one digit numbers</p>
+    <div id="calculator">
+        <div id="result">
+            <p id="resText">Enter some input</p>
+        </div>
+
+        <div class="butRow">
+        <div class="calcBut" id="plus">
+            <p>+</p>
+        </div>
+        <div class="calcBut" id="minus">
+            <p>-</p>
+        </div>
+        <div class="calcBut" id="mult">
+            <p>*</p>
+        </div>
+        <div class="calcBut" id="divide">
+            <p>/</p>
+        </div>
+        </div>
+
+        <div class="butRow">
+            <div class="calcBut numBut">
+                <p>0</p>
+            </div>
+            <div class="calcBut numBut">
+                <p>1</p>
+            </div>
+            <div class="calcBut numBut">
+                <p>2</p>
+            </div>
+            <div class="calcBut numBut">
+                <p>3</p>
+            </div>
+        </div>
+
+        <div class="butRow">
+            <div class="calcBut numBut">
+                <p>4</p>
+            </div>
+            <div class="calcBut numBut">
+                <p>5</p>
+            </div>
+            <div class="calcBut numBut">
+                <p>6</p>
+            </div>
+            <div class="calcBut numBut">
+                <p>7</p>
+            </div>
+        </div>
+
+        <div class="butRow">
+            <div class="calcBut numBut">
+                <p>8</p>
+            </div>
+            <div class="calcBut numBut">
+                <p>9</p>
+            </div>
+            <div class="calcBut" id="clear">
+                <p>c</p>
+            </div>
+            <div class="calcBut" id="equals">
+                <p>=</p>
+            </div>
+        </div>
+
+    </div>
+
+    <h1 id="stopName">Stopwatch</h1>
+    <div id="stopwatch">
+        <div class="container">
+            <div id="clockDisplay" class="button">
+                <p id="clDispText">0</p>
+            </div>
+
+            <div class="row">
+                <div id="startTime" class="button">
+                    <center id="startStop">Start</center>
+                </div>
+
+                <div id="clearTime" class="button">
+                    <center>Clear</center>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+    </div>
+
+</body>
+</html>
+
+<script>
+    var opBool=[false,false,false,false]; // + - * /
+    var numbers=[null,null];
+
+    $('#equals').click(function() {
+        calculate(numbers);
+    });
+
+    $('#clear').click(function() {
+        resetCalc();
+        var txtEl=document.getElementById("resText");
+        txtEl.innerHTML="cleared";
+    });
+
+    $('#plus').click(function() {
+        opBool[0]=true;
+        var txtEl=document.getElementById("resText");
+        txtEl.innerHTML="+";
+    });
+    $('#minus').click(function() {
+        opBool[1]=true;
+        var txtEl=document.getElementById("resText");
+        txtEl.innerHTML="-";
+    });
+    $('#mult').click(function() {
+        opBool[2]=true;
+        var txtEl=document.getElementById("resText");
+        txtEl.innerHTML="*";
+    });
+    $('#divide').click(function() {
+        opBool[3]=true;
+        var txtEl=document.getElementById("resText");
+        txtEl.innerHTML="/";
+    });
+
+
+    $('.numBut').click(function() {
+        var text = $(this).text();
+        if(numbers[0]===null){
+            numbers[0]=text;
+        }
+        else{
+            numbers[1]=text;
+        }
+        var txtEl=document.getElementById("resText");
+        txtEl.innerHTML=text;
+    });
+
+    function calculate(array){
+        var num1=parseInt(array[0]); //convert strings to numbers
+        var num2=parseInt(array[1]);
+        var txtEl=document.getElementById("resText");
+        var txt="";
+        var result=0;
+
+        if(opBool[0]){
+            result=num1+num2;
+        }
+        else if(opBool[1]){
+            result=num1-num2;
+        }
+        else if(opBool[2]){
+            result=num1*num2;
+        }
+        else if(opBool[3]){
+            result=num1/num2;
+        }
+        txt=result.toString();
+        txtEl.innerHTML="="+txt;
+        resetCalc();
+    }
+
+    function resetCalc(){
+        opBool=[false,false,false,false];
+        numbers=[null,null];
+    }
+
+    ////////////////////////
+    var running=true;
+    var clockTimer;
+
+    function update() {
+        var text = document.getElementById("clDispText");
+        var time = text.innerHTML;
+        time++;
+        text.innerHTML = time;
+    }
+
+    function start(){
+        clockTimer=setInterval("update()",1000);
+        var txt = document.getElementById("startStop");
+        txt.innerHTML="Pause";
+    }
+
+    function stop(){
+        clearInterval(clockTimer);
+        var txt = document.getElementById("startStop");
+        txt.innerHTML="Start";
+    }
+
+    function clear(){
+        var text = document.getElementById("clDispText");
+        text.innerHTML="0";
+        running=true;
+    }
+
+    $('#clearTime').click(function() {
+        stop();
+        clear();
+    });
+
+    $('#startTime').click(function() {
+        running= !running;
+        if(!running){
+            start();
+        }
+        else if(running){
+            stop();
+        }
+    });
+
+
+    var myVar=setInterval(function(){myTimer()},1000);
+
+    function myTimer() {
+        var d = new Date();
+        document.getElementById("time").innerHTML = d.toLocaleTimeString();
+    }
+
+
+</script>
